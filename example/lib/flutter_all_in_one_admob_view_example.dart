@@ -26,12 +26,13 @@ class FlutterAdmobViewExample extends StatelessWidget {
                   ),
                 ),
               ),
-              FlutteAdmobView(
-                adUnitIdAndroid: FlutterAdmobViewUtils
+              FlutteAdmobAllInOneView(
+                adUnitIdAndroid: FlutteAdmobAllInOneViewUtils
                     .instance.adUnitIdAndroidInterstitialTesting,
-                adUnitIdiOS: FlutterAdmobViewUtils
+                adUnitIdiOS: FlutteAdmobAllInOneViewUtils
                     .instance.adUnitIdiOSInterstitialTesting,
-                adType: FlutterAdmobViewUtils.instance.adsInterstitialType,
+                adType:
+                    FlutteAdmobAllInOneViewUtils.instance.adsInterstitialType,
                 onBannerListener: (status, message) {
                   debugPrint(message);
                 },
@@ -42,13 +43,13 @@ class FlutterAdmobViewExample extends StatelessWidget {
                   print("onInterstitialAdDismissed: Interstitial Type");
                 },
               ),
-              FlutteAdmobView(
-                adUnitIdAndroid: FlutterAdmobViewUtils
+              FlutteAdmobAllInOneView(
+                adUnitIdAndroid: FlutteAdmobAllInOneViewUtils
                     .instance.adUnitIdAndroidInterstitialRewardTesting,
-                adUnitIdiOS: FlutterAdmobViewUtils
+                adUnitIdiOS: FlutteAdmobAllInOneViewUtils
                     .instance.adUnitIdiOSInterstitialRewardTesting,
-                adType:
-                    FlutterAdmobViewUtils.instance.adsInterstitialRewardedType,
+                adType: FlutteAdmobAllInOneViewUtils
+                    .instance.adsInterstitialRewardedType,
                 onBannerListener: (status, message) {
                   debugPrint(message);
                 },
@@ -119,12 +120,12 @@ class FlutterAdmobViewExample extends StatelessWidget {
               ),
               Padding(
                 padding: const EdgeInsets.only(bottom: 10, top: 10),
-                child: FlutteAdmobView(
-                  adUnitIdAndroid: FlutterAdmobViewUtils
+                child: FlutteAdmobAllInOneView(
+                  adUnitIdAndroid: FlutteAdmobAllInOneViewUtils
                       .instance.adUnitIdAndroidBannerTesting,
-                  adUnitIdiOS:
-                      FlutterAdmobViewUtils.instance.adUnitIdiOSBannerTesting,
-                  adType: FlutterAdmobViewUtils.instance.adsBannertype,
+                  adUnitIdiOS: FlutteAdmobAllInOneViewUtils
+                      .instance.adUnitIdiOSBannerTesting,
+                  adType: FlutteAdmobAllInOneViewUtils.instance.adsBannertype,
                   onBannerListener: (status, message) {
                     debugPrint(message);
                   },

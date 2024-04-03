@@ -33,7 +33,7 @@ class FlutterInterstitialRewardedViewState
 
   /// Loads a rewarded ad.
   void loadAd() {
-    var adUnitId = FlutterAdmobViewUtils.instance.isTest
+    var adUnitId = FlutteAdmobAllInOneViewUtils.instance.isTest
         ? Platform.isAndroid
             ? 'ca-app-pub-3940256099942544/5354046379'
             : 'ca-app-pub-3940256099942544/6978759866'

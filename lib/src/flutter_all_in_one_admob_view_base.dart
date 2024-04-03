@@ -13,7 +13,7 @@ import 'flutter_interstitial_view.dart';
 ///
 /// It manages all params required for API using.
 /// you can check some required, some not.
-class FlutteAdmobView extends StatelessWidget {
+class FlutteAdmobAllInOneView extends StatelessWidget {
   /// The [adType] from user input.
   ///
   /// Ex: FlutterAdmobViewUtils.instance.adsBannertype,
@@ -52,7 +52,7 @@ class FlutteAdmobView extends StatelessWidget {
   /// Description: will return after video has been end you can get reward to do something.
   Function(String amount, String type)? onRewardedEarn;
 
-  FlutteAdmobView(
+  FlutteAdmobAllInOneView(
       {required this.adType,
       this.adUnitIdAndroid,
       this.adUnitIdiOS,
@@ -62,7 +62,7 @@ class FlutteAdmobView extends StatelessWidget {
       this.onRewardedEarn});
   @override
   Widget build(BuildContext context) {
-    if (FlutterAdmobViewUtils.instance.adsBannertype == adType) {
+    if (FlutteAdmobAllInOneViewUtils.instance.adsBannertype == adType) {
       return Align(
         alignment: Alignment.center,
         child: FlutterBannerView(
@@ -72,7 +72,7 @@ class FlutteAdmobView extends StatelessWidget {
         ),
       );
     }
-    if (FlutterAdmobViewUtils.instance.adsInterstitialType == adType) {
+    if (FlutteAdmobAllInOneViewUtils.instance.adsInterstitialType == adType) {
       return Align(
         alignment: Alignment.center,
         child: FlutterInterstitialView(
@@ -83,7 +83,8 @@ class FlutteAdmobView extends StatelessWidget {
         ),
       );
     }
-    if (FlutterAdmobViewUtils.instance.adsInterstitialRewardedType == adType) {
+    if (FlutteAdmobAllInOneViewUtils.instance.adsInterstitialRewardedType ==
+        adType) {
       return Align(
         alignment: Alignment.center,
         child: FlutterInterstitialRewardedView(
@@ -102,18 +103,18 @@ class FlutteAdmobView extends StatelessWidget {
   }
 }
 
-/// FlutterAdmobViewUtils
+/// FlutteAdmobAllInOneViewUtils
 ///
 /// It manages all params required for API using.
 /// you can check some required, some not.
-class FlutterAdmobViewUtils {
-  FlutterAdmobViewUtils._();
+class FlutteAdmobAllInOneViewUtils {
+  FlutteAdmobAllInOneViewUtils._();
 
-  static final FlutterAdmobViewUtils _instance = FlutterAdmobViewUtils._()
-    ..init();
+  static final FlutteAdmobAllInOneViewUtils _instance =
+      FlutteAdmobAllInOneViewUtils._()..init();
 
   /// Shared instance to initialize the AdMob SDK.
-  static FlutterAdmobViewUtils get instance => _instance;
+  static FlutteAdmobAllInOneViewUtils get instance => _instance;
   void init() {
     MobileAds.instance.initialize();
   }

@@ -26,7 +26,7 @@ class FlutterBannerBannerViewState extends State<FlutterBannerView> {
 
   /// Loads a banner ad.
   void loadAd() {
-    var adUnitId = FlutterAdmobViewUtils.instance.isTest
+    var adUnitId = FlutteAdmobAllInOneViewUtils.instance.isTest
         ? Platform.isAndroid
             ? 'ca-app-pub-3940256099942544/6300978111'
             : 'ca-app-pub-3940256099942544/2934735716'
