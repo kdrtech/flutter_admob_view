@@ -264,6 +264,15 @@ dependencies:
 
 *The complete example is available [here](https://github.com/kdrtech/flutter_admob_view/tree/master/example/lib).*
 
+*Add config to your main()*
+```dart
+void main() {
+  WidgetsFlutterBinding.ensureInitialized();
+  FlutteAdmobAllInOneViewUtils.instance.init();
+  FlutteAdmobAllInOneViewUtils.instance.isTest = false;
+  runApp(const MyApp());
+}
+```
 *Admob Banner Type*
 * adUnitIdAndroid : adUnitIdAndroid for Android platfrom from your admob account: [here](https://admob.google.com)
 * adUnitIdiOS : adUnitIdAndroid for IOS platfrom from your admob account: [here](https://admob.google.com)
