@@ -1,3 +1,5 @@
+// ignore_for_file: must_be_immutable
+
 import 'package:flutter/material.dart';
 import 'package:flutter_all_in_one_admob_view/flutter_all_in_one_admob_view.dart';
 
@@ -12,6 +14,10 @@ class FlutterAdmobViewExample extends StatelessWidget {
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
+            const Padding(
+              padding: EdgeInsets.all(20),
+              child: Text("Example Admob"),
+            ),
             FlutteAdmobView(
               adType: FlutterAdmobViewUtils.instance.adsBannertype,
               onBannerListener: (status, message) {
@@ -25,6 +31,9 @@ class FlutterAdmobViewExample extends StatelessWidget {
               },
               onInterstitialListener: (function) {
                 callMe = function;
+              },
+              onInterstitialAdDismissed: () {
+                print("onInterstitialAdDismissed");
               },
             ),
             TextButton(

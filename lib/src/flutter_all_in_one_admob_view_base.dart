@@ -16,10 +16,13 @@ class FlutteAdmobView extends StatelessWidget {
 
   Function(bool status, String message)? onBannerListener;
   Function(Function? function)? onInterstitialListener;
-  FlutteAdmobView(
-      {required this.adType,
-      this.onBannerListener,
-      this.onInterstitialListener});
+  Function()? onInterstitialAdDismissed;
+  FlutteAdmobView({
+    required this.adType,
+    this.onBannerListener,
+    this.onInterstitialListener,
+    this.onInterstitialAdDismissed,
+  });
   @override
   Widget build(BuildContext context) {
     if (FlutterAdmobViewUtils.instance.adsBannertype == adType) {
@@ -39,6 +42,7 @@ class FlutteAdmobView extends StatelessWidget {
           adUnitIdAndroid: adUnitIdAndroid,
           adUnitIdiOS: adUnitIdiOS,
           onListener: onInterstitialListener,
+          onInterstitialAdDismissed: onInterstitialAdDismissed,
         ),
       );
     }

@@ -21,19 +21,19 @@ class FlutterInterstitialView extends StatefulWidget {
 }
 
 class FlutterInterstitialViewState extends State<FlutterInterstitialView> {
-  InterstitialAd? _interstitialAd;
+  RewardedInterstitialAd? _rewardedInterstitialAd;
 
   // TODO: replace this test ad unit with your own ad unit.
   final adUnitId = Platform.isAndroid
-      ? 'ca-app-pub-3940256099942544/1033173712'
-      : 'ca-app-pub-3940256099942544/4411468910';
+      ? 'ca-app-pub-3940256099942544/5354046379'
+      : 'ca-app-pub-3940256099942544/6978759866';
 
-  /// Loads an interstitial ad.
+  /// Loads a rewarded ad.
   void loadAd() {
-    InterstitialAd.load(
+    RewardedInterstitialAd.load(
         adUnitId: adUnitId,
         request: const AdRequest(),
-        adLoadCallback: InterstitialAdLoadCallback(
+        rewardedInterstitialAdLoadCallback: RewardedInterstitialAdLoadCallback(
           // Called when an ad is successfully received.
           onAdLoaded: (ad) {
             ad.fullScreenContentCallback = FullScreenContentCallback(
@@ -50,20 +50,17 @@ class FlutterInterstitialViewState extends State<FlutterInterstitialView> {
                 onAdDismissedFullScreenContent: (ad) {
                   // Dispose the ad here to free resources.
                   ad.dispose();
-                  loadAd();
-                  widget.onInterstitialAdDismissed?.call();
                 },
                 // Called when a click is recorded for an ad.
                 onAdClicked: (ad) {});
 
             debugPrint('$ad loaded.');
             // Keep a reference to the ad so you can show it later.
-            _interstitialAd = ad;
-            widget.onListener?.call(widget.show);
+            _rewardedInterstitialAd = ad;
           },
           // Called when an ad request failed.
           onAdFailedToLoad: (LoadAdError error) {
-            debugPrint('InterstitialAd failed to load: $error');
+            debugPrint('RewardedInterstitialAd failed to load: $error');
           },
         ));
   }
@@ -71,9 +68,10 @@ class FlutterInterstitialViewState extends State<FlutterInterstitialView> {
   @override
   void initState() {
     widget.show = () {
-      //_interstitialAd
-      _interstitialAd?.show();
-
+      _rewardedInterstitialAd?.show(
+          onUserEarnedReward: (AdWithoutView ad, RewardItem rewardItem) {
+        // Reward the user for watching an ad.
+      });
       print("show me");
     };
     loadAd();
