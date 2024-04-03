@@ -1,19 +1,26 @@
 // ignore_for_file: must_be_immutable
 
+import 'dart:ffi';
 import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
 
+import '../flutter_all_in_one_admob_view.dart';
+
 class FlutterInterstitialRewardedView extends StatefulWidget {
   var adUnitIdiOS = "";
   var adUnitIdAndroid = "";
-  Function(String amount, String type)? onRewardedInterstitialEarn;
+  Function(String amount, String type)? onRewardedEarn;
   Function? show;
+  Function(Function? showFunction)? onListener;
+  Function()? onInterstitialAdDismissed;
   FlutterInterstitialRewardedView({
     required this.adUnitIdAndroid,
     required this.adUnitIdiOS,
-    required this.onRewardedInterstitialEarn,
+    this.onRewardedEarn,
+    this.onInterstitialAdDismissed,
+    required this.onListener,
   });
   @override
   FlutterInterstitialRewardedViewState createState() =>
@@ -24,13 +31,15 @@ class FlutterInterstitialRewardedViewState
     extends State<FlutterInterstitialRewardedView> {
   RewardedInterstitialAd? _rewardedInterstitialAd;
 
-  // TODO: replace this test ad unit with your own ad unit.
-  final adUnitId = Platform.isAndroid
-      ? 'ca-app-pub-3940256099942544/5354046379'
-      : 'ca-app-pub-3940256099942544/6978759866';
-
   /// Loads a rewarded ad.
   void loadAd() {
+    var adUnitId = FlutterAdmobViewUtils.instance.isTest
+        ? Platform.isAndroid
+            ? 'ca-app-pub-3940256099942544/5354046379'
+            : 'ca-app-pub-3940256099942544/6978759866'
+        : Platform.isAndroid
+            ? widget.adUnitIdAndroid
+            : widget.adUnitIdiOS;
     RewardedInterstitialAd.load(
         adUnitId: adUnitId,
         request: const AdRequest(),
@@ -46,11 +55,14 @@ class FlutterInterstitialRewardedViewState
                 onAdFailedToShowFullScreenContent: (ad, err) {
                   // Dispose the ad here to free resources.
                   ad.dispose();
+                  loadAd();
                 },
                 // Called when the ad dismissed full screen content.
                 onAdDismissedFullScreenContent: (ad) {
                   // Dispose the ad here to free resources.
                   ad.dispose();
+                  loadAd();
+                  widget.onInterstitialAdDismissed?.call();
                 },
                 // Called when a click is recorded for an ad.
                 onAdClicked: (ad) {});
@@ -58,6 +70,7 @@ class FlutterInterstitialRewardedViewState
             debugPrint('$ad loaded.');
             // Keep a reference to the ad so you can show it later.
             _rewardedInterstitialAd = ad;
+            widget.onListener?.call(widget.show);
           },
           // Called when an ad request failed.
           onAdFailedToLoad: (LoadAdError error) {
@@ -71,8 +84,7 @@ class FlutterInterstitialRewardedViewState
     widget.show = () {
       _rewardedInterstitialAd?.show(
           onUserEarnedReward: (AdWithoutView ad, RewardItem rewardItem) {
-        widget.onRewardedInterstitialEarn
-            ?.call("${rewardItem.amount}", rewardItem.type);
+        widget.onRewardedEarn?.call("${rewardItem.amount}", rewardItem.type);
       });
     };
     loadAd();
@@ -81,6 +93,6 @@ class FlutterInterstitialRewardedViewState
 
   @override
   Widget build(BuildContext context) {
-    return Text("");
+    return Visibility(child: Text(""), visible: false);
   }
 }

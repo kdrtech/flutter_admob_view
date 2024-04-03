@@ -6,7 +6,7 @@ import 'flutter_all_in_one_admob_view_example.dart';
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
   FlutterAdmobViewUtils.instance.init();
-  FlutterAdmobViewUtils.instance.isTest = true;
+  FlutterAdmobViewUtils.instance.isTest = false;
   runApp(const MyApp());
 }
 

@@ -5,10 +5,12 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
 
+import '../flutter_all_in_one_admob_view.dart';
+
 class FlutterInterstitialView extends StatefulWidget {
   var adUnitIdiOS = "";
   var adUnitIdAndroid = "";
-  Function(Function?)? onListener;
+  Function(Function? showFunction)? onListener;
   Function()? onInterstitialAdDismissed;
   Function? show;
   FlutterInterstitialView(
@@ -23,13 +25,16 @@ class FlutterInterstitialView extends StatefulWidget {
 class FlutterInterstitialViewState extends State<FlutterInterstitialView> {
   InterstitialAd? _interstitialAd;
 
-  // TODO: replace this test ad unit with your own ad unit.
-  final adUnitId = Platform.isAndroid
-      ? 'ca-app-pub-3940256099942544/1033173712'
-      : 'ca-app-pub-3940256099942544/4411468910';
-
   /// Loads an interstitial ad.
   void loadAd() {
+    var adUnitId = FlutterAdmobViewUtils.instance.isTest
+        ? Platform.isAndroid
+            ? 'ca-app-pub-3940256099942544/1033173712'
+            : 'ca-app-pub-3940256099942544/4411468910'
+        : Platform.isAndroid
+            ? widget.adUnitIdAndroid
+            : widget.adUnitIdiOS;
+
     InterstitialAd.load(
         adUnitId: adUnitId,
         request: const AdRequest(),
@@ -45,6 +50,7 @@ class FlutterInterstitialViewState extends State<FlutterInterstitialView> {
                 onAdFailedToShowFullScreenContent: (ad, err) {
                   // Dispose the ad here to free resources.
                   ad.dispose();
+                  loadAd();
                 },
                 // Called when the ad dismissed full screen content.
                 onAdDismissedFullScreenContent: (ad) {
@@ -82,6 +88,6 @@ class FlutterInterstitialViewState extends State<FlutterInterstitialView> {
 
   @override
   Widget build(BuildContext context) {
-    return Text("");
+    return Visibility(child: Text("sdf"), visible: false);
   }
 }

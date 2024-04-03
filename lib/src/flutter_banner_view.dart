@@ -81,6 +81,9 @@ class FlutterBannerBannerViewState extends State<FlutterBannerView> {
         child: AdWidget(ad: _bannerAd!),
       );
     }
-    return Text("");
+    return Visibility(
+      child: Text(""),
+      visible: false,
+    );
   }
 }
