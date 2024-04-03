@@ -46,6 +46,17 @@ class FlutteAdmobView extends StatelessWidget {
         ),
       );
     }
+    if (FlutterAdmobViewUtils.instance.adsInterstitialRewardedType == adType) {
+      return Align(
+        alignment: Alignment.center,
+        child: FlutterInterstitialView(
+          adUnitIdAndroid: adUnitIdAndroid,
+          adUnitIdiOS: adUnitIdiOS,
+          onListener: onInterstitialListener,
+          onInterstitialAdDismissed: onInterstitialAdDismissed,
+        ),
+      );
+    }
     return Center(
       child: Text("Invalid ads type"),
     );
@@ -74,5 +85,6 @@ class FlutterAdmobViewUtils {
   var adsBannertype = "BannerAd";
   var adsInterstitialType = "Interstitial";
   var adsRewardedType = "Rewarded";
+  var adsInterstitialRewardedType = "InterstitialRewarded";
   var adsNativeType = "Native";
 }

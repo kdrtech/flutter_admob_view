@@ -5,22 +5,23 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
 
-class FlutterInterstitialView extends StatefulWidget {
+class FlutterInterstitialRewardedView extends StatefulWidget {
   var adUnitIdiOS = "";
   var adUnitIdAndroid = "";
-  Function(Function?)? onListener;
-  Function()? onInterstitialAdDismissed;
+  Function(String amount, String type)? onRewardedInterstitialEarn;
   Function? show;
-  FlutterInterstitialView(
-      {required this.adUnitIdAndroid,
-      required this.adUnitIdiOS,
-      required this.onListener,
-      required this.onInterstitialAdDismissed});
+  FlutterInterstitialRewardedView({
+    required this.adUnitIdAndroid,
+    required this.adUnitIdiOS,
+    required this.onRewardedInterstitialEarn,
+  });
   @override
-  FlutterInterstitialViewState createState() => FlutterInterstitialViewState();
+  FlutterInterstitialRewardedViewState createState() =>
+      FlutterInterstitialRewardedViewState();
 }
 
-class FlutterInterstitialViewState extends State<FlutterInterstitialView> {
+class FlutterInterstitialRewardedViewState
+    extends State<FlutterInterstitialRewardedView> {
   RewardedInterstitialAd? _rewardedInterstitialAd;
 
   // TODO: replace this test ad unit with your own ad unit.
@@ -70,9 +71,9 @@ class FlutterInterstitialViewState extends State<FlutterInterstitialView> {
     widget.show = () {
       _rewardedInterstitialAd?.show(
           onUserEarnedReward: (AdWithoutView ad, RewardItem rewardItem) {
-        // Reward the user for watching an ad.
+        widget.onRewardedInterstitialEarn
+            ?.call("${rewardItem.amount}", rewardItem.type);
       });
-      print("show me");
     };
     loadAd();
     super.initState();
