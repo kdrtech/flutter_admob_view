@@ -2,8 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_all_in_one_admob_view/flutter_all_in_one_admob_view.dart';
 
 class FlutterAdmobViewExample extends StatelessWidget {
-  const FlutterAdmobViewExample({super.key});
+  FlutterAdmobViewExample({super.key});
 
+  Function? callMe;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -18,10 +19,22 @@ class FlutterAdmobViewExample extends StatelessWidget {
               },
             ),
             FlutteAdmobView(
-              adType: FlutterAdmobViewUtils.instance.adsBannertype,
+              adType: FlutterAdmobViewUtils.instance.adsInterstitialType,
               onBannerListener: (status, message) {
                 debugPrint(message);
               },
+              onInterstitialListener: (function) {
+                callMe = function;
+              },
+            ),
+            TextButton(
+              style: OutlinedButton.styleFrom(
+                side: const BorderSide(width: 2, color: Colors.blueAccent),
+              ),
+              onPressed: () {
+                callMe?.call();
+              },
+              child: const Text("Open  Interstitial"),
             )
           ],
         ),

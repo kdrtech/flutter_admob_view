@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
 
 import 'flutter_banner_view.dart';
+import 'flutter_interstitial_view.dart';
 
 /// Checks if you are awesome. Spoiler: you are.
 class FlutteAdmobView extends StatelessWidget {
@@ -14,7 +15,11 @@ class FlutteAdmobView extends StatelessWidget {
   var adUnitIdAndroid = "";
 
   Function(bool status, String message)? onBannerListener;
-  FlutteAdmobView({required this.adType, this.onBannerListener});
+  Function(Function? function)? onInterstitialListener;
+  FlutteAdmobView(
+      {required this.adType,
+      this.onBannerListener,
+      this.onInterstitialListener});
   @override
   Widget build(BuildContext context) {
     if (FlutterAdmobViewUtils.instance.adsBannertype == adType) {
@@ -23,7 +28,17 @@ class FlutteAdmobView extends StatelessWidget {
         child: FlutterBannerView(
           adUnitIdAndroid: adUnitIdAndroid,
           adUnitIdiOS: adUnitIdiOS,
-          onBannerListener: onBannerListener,
+          onListener: onBannerListener,
+        ),
+      );
+    }
+    if (FlutterAdmobViewUtils.instance.adsInterstitialType == adType) {
+      return Align(
+        alignment: Alignment.center,
+        child: FlutterInterstitialView(
+          adUnitIdAndroid: adUnitIdAndroid,
+          adUnitIdiOS: adUnitIdiOS,
+          onListener: onInterstitialListener,
         ),
       );
     }

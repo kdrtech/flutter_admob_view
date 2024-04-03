@@ -10,11 +10,11 @@ import '../flutter_all_in_one_admob_view.dart';
 class FlutterBannerView extends StatefulWidget {
   var adUnitIdiOS = "";
   var adUnitIdAndroid = "";
-  Function(bool, String)? onBannerListener;
+  Function(bool, String)? onListener;
   FlutterBannerView({
     required this.adUnitIdAndroid,
     required this.adUnitIdiOS,
-    required this.onBannerListener,
+    required this.onListener,
   });
   @override
   FlutterBannerBannerViewState createState() => FlutterBannerBannerViewState();
@@ -42,7 +42,7 @@ class FlutterBannerBannerViewState extends State<FlutterBannerView> {
         // Called when an ad is successfully received.
         onAdLoaded: (ad) {
           debugPrint('$ad loaded.');
-          widget.onBannerListener?.call(
+          widget.onListener?.call(
             true,
             "loaded",
           );
@@ -52,7 +52,7 @@ class FlutterBannerBannerViewState extends State<FlutterBannerView> {
         },
         // Called when an ad request failed.
         onAdFailedToLoad: (ad, err) {
-          widget.onBannerListener?.call(
+          widget.onListener?.call(
             false,
             "BannerAd failed to load: Invalid Request. Cannot determine request type. Is your ad unit id correct?",
           );
@@ -81,6 +81,6 @@ class FlutterBannerBannerViewState extends State<FlutterBannerView> {
         child: AdWidget(ad: _bannerAd!),
       );
     }
-    return Text("d");
+    return Text("");
   }
 }
