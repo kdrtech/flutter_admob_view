@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_all_in_one_admob_view/flutter_add_in_one_admob_view.dart';
+import 'package:flutter_all_in_one_admob_view/flutter_all_in_one_admob_view.dart';
 
 class FlutterAdmobViewExample extends StatelessWidget {
   const FlutterAdmobViewExample({super.key});
