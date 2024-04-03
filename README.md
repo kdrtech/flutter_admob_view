@@ -13,6 +13,8 @@ and the Flutter guide for
 
 # flutter_admob_view
 
+[![Pub Package](https://img.shields.io/pub/v/flutter_all_in_one_admob_view.svg?style=flat-square)](https://pub.dev/packages/flutter_all_in_one_admob_view)
+
 <a  href="https://www.buymeacoffee.com/kdrtech" target="_blank">
 <img src="https://cdn.buymeacoffee.com/buttons/default-orange.png" height="41" />
 </a>
