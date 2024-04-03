@@ -3,8 +3,9 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
-import 'package:flutter_admob_view/flutter_admob_view.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
+
+import '../flutter_add_in_one_admob_view.dart';
 
 class FlutterBannerView extends StatefulWidget {
   var adUnitIdiOS = "";

@@ -1,4 +1,3 @@
-import 'package:flutter_admob_view/flutter_admob_view.dart';
 import 'package:test/test.dart';
 
 void main() {

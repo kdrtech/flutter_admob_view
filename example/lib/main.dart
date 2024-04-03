@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_admob_view/flutter_admob_view.dart';
+import 'package:flutter_all_in_one_admob_view/flutter_add_in_one_admob_view.dart';
 
-import 'flutter_admob_view_example.dart';
+import 'flutter_all_in_one_admob_view_example.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
   FlutterAdmobViewUtils.instance.init();
-
+  FlutterAdmobViewUtils.instance.isTest = true;
   runApp(const MyApp());
 }
 
