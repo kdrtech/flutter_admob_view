@@ -11,7 +11,7 @@ and the Flutter guide for
 [developing packages and plugins](https://flutter.dev/developing-packages). 
 -->
 
-# flutter_admob_view
+# flutter_all_in_one_admob_view
 
 [![Pub Package](https://img.shields.io/pub/v/flutter_all_in_one_admob_view.svg?style=flat-square)](https://pub.dev/packages/flutter_all_in_one_admob_view)
 
