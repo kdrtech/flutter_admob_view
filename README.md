@@ -21,7 +21,7 @@ and the Flutter guide for
 
 Highly video, feature-packed flutter_all_in_one_admob_view widget for Flutter.
 
-| ![Image](https://raw.githubusercontent.com/kdrtech/flutter_admob_view/master/example/assets/screen.gif)
+| ![Image](https://raw.githubusercontent.com/kdrtech/flutter_admob_view/master/example/assets/screenv2.gif)
 | :------------: |
 
 ## Features
