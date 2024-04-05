@@ -7,6 +7,7 @@ class FlutterAdmobViewExample extends StatelessWidget {
   FlutterAdmobViewExample({super.key});
   Function? intersitialFunction;
   Function? interstialRewareFunction;
+  Function? rewareFunction;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -55,6 +56,25 @@ class FlutterAdmobViewExample extends StatelessWidget {
                 },
                 onInitFunction: (function) {
                   interstialRewareFunction = function;
+                },
+                onRewardedEarn: (amount, type) {
+                  debugPrint(amount);
+                },
+                onInterstitialAdDismissed: () {
+                  print("onInterstitialAdDismissed: Reward Type");
+                },
+              ),
+              FlutteAdmobAllInOneView(
+                adUnitIdAndroid: FlutteAdmobAllInOneViewUtils
+                    .instance.adUnitIdAndroidRewardTesting,
+                adUnitIdiOS: FlutteAdmobAllInOneViewUtils
+                    .instance.adUnitIdiOSRewardTesting,
+                adType: FlutteAdmobAllInOneViewUtils.instance.adsRewardedType,
+                onBannerListener: (status, message) {
+                  debugPrint(message);
+                },
+                onInitFunction: (function) {
+                  rewareFunction = function;
                 },
                 onRewardedEarn: (amount, type) {
                   debugPrint(amount);
@@ -145,7 +165,7 @@ class FlutterAdmobViewExample extends StatelessWidget {
                       intersitialFunction?.call();
                     },
                     child: const Text(
-                      "Open  Interstitial",
+                      "Interstitial",
                       style: TextStyle(fontSize: 12),
                     ),
                   ),
@@ -159,7 +179,21 @@ class FlutterAdmobViewExample extends StatelessWidget {
                       interstialRewareFunction?.call();
                     },
                     child: const Text(
-                      "Open  Interstitial Reward",
+                      "Interstitial Reward",
+                      style: TextStyle(fontSize: 12),
+                    ),
+                  ),
+                  const Spacer(),
+                  TextButton(
+                    style: OutlinedButton.styleFrom(
+                      side:
+                          const BorderSide(width: 2, color: Colors.blueAccent),
+                    ),
+                    onPressed: () {
+                      rewareFunction?.call();
+                    },
+                    child: const Text(
+                      "Reward",
                       style: TextStyle(fontSize: 12),
                     ),
                   ),

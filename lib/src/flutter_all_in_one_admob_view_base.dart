@@ -8,6 +8,7 @@ import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'flutter_banner_view.dart';
 import 'flutter_interstitial_rewarded_view.dart';
 import 'flutter_interstitial_view.dart';
+import 'flutter_rewarded_view.dart';
 
 /// FlutteAdmobView is the main class of the FlutteAdmobView API.
 ///
@@ -96,6 +97,18 @@ class FlutteAdmobAllInOneView extends StatelessWidget {
         ),
       );
     }
+    if (FlutteAdmobAllInOneViewUtils.instance.adsRewardedType == adType) {
+      return Align(
+        alignment: Alignment.center,
+        child: FlutterRewardedView(
+          adUnitIdAndroid: adUnitIdAndroid ?? "",
+          adUnitIdiOS: adUnitIdiOS ?? "",
+          onListener: onInitFunction,
+          onRewardedEarn: onRewardedEarn,
+          onInterstitialAdDismissed: onInterstitialAdDismissed,
+        ),
+      );
+    }
 
     return Center(
       child: Text("Invalid ads type"),
@@ -148,7 +161,8 @@ class FlutteAdmobAllInOneViewUtils {
   /// The [adsInterstitialRewardedType] InterstitialRewarded type.
   var adsInterstitialRewardedType = "InterstitialRewarded";
 
-  //var adsRewardedType = "Rewarded";
+  /// The [adsRewardedType] adsRewardedType type.
+  var adsRewardedType = "Rewarded";
   //var adsNativeType = "Native";
 
   var adUnitIdAndroidBannerTesting = "ca-app-pub-3940256099942544/6300978111";
@@ -156,9 +170,10 @@ class FlutteAdmobAllInOneViewUtils {
   var adUnitIdAndroidInterstitialTesting =
       "ca-app-pub-3940256099942544/1033173712";
   var adUnitIdiOSInterstitialTesting = "ca-app-pub-3940256099942544/4411468910";
-
   var adUnitIdAndroidInterstitialRewardTesting =
       "ca-app-pub-3940256099942544/5354046379";
   var adUnitIdiOSInterstitialRewardTesting =
       "ca-app-pub-3940256099942544/6978759866";
+  var adUnitIdAndroidRewardTesting = "ca-app-pub-3940256099942544/5224354917";
+  var adUnitIdiOSRewardTesting = "ca-app-pub-3940256099942544/1712485313";
 }

@@ -7,3 +7,6 @@
 
 ## 1.0.1
 - Updated Readme
+
+## 1.0.2
+- Added :  Support:Admob Rewarded.
