@@ -27,7 +27,8 @@ Highly video, feature-packed flutter_all_in_one_admob_view widget for Flutter.
 ## Features
 * Support Admob Banner.
 * Support Admob Interstitial.
-* Support Interstitial Rewarded.
+* Support Admob Interstitial Rewarded.
+* Support Admob Rewarded.
 
 ## Usage
 
@@ -39,7 +40,7 @@ Add the following line to `pubspec.yaml`:
 
 ```yaml
 dependencies:
-  flutter_all_in_one_admob_view: ^1.0.1
+  flutter_all_in_one_admob_view: ^1.0.2
 ```
 ### Basic setup
 
@@ -333,6 +334,31 @@ FlutteAdmobAllInOneView(
     },
 )
 ```
+*Admob Rewarded Type*
+* adUnitIdAndroid : adUnitIdAndroid for Android platfrom from your admob account: [here](https://admob.google.com)
+* adUnitIdiOS : adUnitIdAndroid for IOS platfrom from your admob account: [here](https://admob.google.com)
+* adType : Ads Type [here](https://github.com/kdrtech/flutter_admob_view/tree/master/example/lib)
+* onInitFunction: Store functiion for using to show ads.
+* onRewardedEarn: Reward callback after video end.
+* onInterstitialAdDismissed: callback after ads dismissed.
+  
+```dart
+FlutteAdmobAllInOneView(
+    adUnitIdAndroid: FlutteAdmobAllInOneViewUtils.instance.adUnitIdAndroidRewardTesting,
+    adUnitIdiOS: FlutteAdmobAllInOneViewUtils.instance.adUnitIdiOSRewardTesting,
+    adType: FlutteAdmobAllInOneViewUtils.instance.adsRewardedType,
+    onInitFunction: (function) {
+      rewareFunction = function;
+    },
+    onRewardedEarn: (amount, type) {
+      debugPrint(amount);
+    },
+    onInterstitialAdDismissed: () {
+      print("onInterstitialAdDismissed: Reward Type");
+    },
+)
+```
+
 ### Events
 
 use `onInitFunction` to return function param for Interstitial Ads or Interstitial Rewarded Ads. 
