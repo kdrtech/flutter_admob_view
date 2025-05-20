@@ -40,7 +40,7 @@ Add the following line to `pubspec.yaml`:
 
 ```yaml
 dependencies:
-  flutter_all_in_one_admob_view: ^1.0.2
+  flutter_all_in_one_admob_view: ^2.0.0
 ```
 ### Basic setup
 

@@ -10,3 +10,6 @@
 
 ## 1.0.2
 - Added :  Support:Admob Rewarded.
+
+## 2.0.0
+- Update Google Ads Support version.
